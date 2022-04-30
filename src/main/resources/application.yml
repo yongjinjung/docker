@@ -1,0 +1,18 @@
+server:
+  port: 5070
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    #url: jdbc:mariadb://dps-center-db:3306/dp?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mariadb://dps-center-db:3306/dp?characterEncoding=UTF-8&serverTimezone=UTC
+    hikari:
+      username: dev_dp
+      password: q1234!@#$
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format-sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect

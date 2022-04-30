@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  dps-center-db:
+    image: mariadb:10.6
+    environment:
+      MARIADB_ROOT_PASSWORD: q1234!@#$$
+      MARIADB_DATABASE: dp
+      MARIADB_USER: dev_dp
+      MARIADB_PASSWORD: q1234!@#$$
+    ports:
+      - 3306:3306
+    volumes:
+      - ../dps_db/center:/var/lib/mysql
+    networks:
+      - dps-center-net
+
+  dps-center-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 5070:5070
+    depends_on:
+      - dps-center-db
+    networks:
+      - dps-center-net
+
+networks:
+  dps-center-net:
+    driver: bridge
